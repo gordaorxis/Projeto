@@ -1,0 +1,1867 @@
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.event.*;
+
+public class LoginSenha extends JFrame implements ActionListener
+{
+	JLabel jlogin, jsenha, ja, jp, jrodape;
+	JTextField txlogin;
+	JPasswordField pwsenha;
+	JButton entrar, limpar, sair; 
+	Dimension x, y;
+	String login="epaminondas", password = "java";
+	int vzs= 0;
+
+
+
+public LoginSenha()
+{
+	Dimension x = new Dimension(120, 30);
+	Dimension y = new Dimension(160, 20);
+	setTitle("Login");
+	setSize(800, 600);
+	setLocation(400, 100);
+	setResizable(false);
+	setLayout(null);
+	getContentPane().setBackground(Color.yellow);
+	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	
+	jlogin = new JLabel("Login: ");
+	jlogin.setSize(x);
+	jlogin.setLocation(100, 150);
+	
+	jsenha = new JLabel("Senha: ");
+	jsenha.setSize(x);
+	jsenha.setLocation(75, 190);
+	
+	getContentPane().add(jlogin);
+	getContentPane().add(jsenha);
+	
+	jrodape = new JLabel("Desenvolvido por: ");
+	jrodape.setSize(x);
+	jrodape.setLocation(15, 390);
+	jrodape.setFont(new Font("Serif", Font.BOLD, 9));
+	jrodape.setForeground(new Color(0, 0, 0));
+	
+	ja = new JLabel("Ana Carolina, RA: N2874G0 ");
+	ja.setSize(x);
+	ja.setLocation(15, 410);
+	ja.setFont(new Font("Serif", Font.BOLD, 9));
+	ja.setForeground(new Color(0, 0, 0));
+	
+	jp = new JLabel("Pedro Miguel, RA: D83GII3");
+	jp.setSize(x);
+	jp.setLocation(15, 430);
+	jp.setFont(new Font("Serif", Font.BOLD, 9));
+	jp.setForeground(new Color(0, 0, 0));
+	
+	getContentPane().add(jrodape);
+	getContentPane().add(ja);
+	getContentPane().add(jp);
+	
+	txlogin = new JTextField("");
+	txlogin.setSize(y);
+	txlogin.setLocation(140, 157);
+	
+	pwsenha = new JPasswordField("");
+	pwsenha.setSize(y);
+	pwsenha.setLocation(140, 197);
+	
+	getContentPane().add(txlogin);
+	getContentPane().add(pwsenha);
+	
+	entrar = new JButton("ENTRAR");
+	entrar.setSize(100, 40);
+	entrar.setLocation(390, 90);
+	entrar.addActionListener(this);
+	
+	limpar = new JButton("LIMPAR");
+	limpar.setSize(100, 40);
+	limpar.setLocation(390, 160);
+	limpar.addActionListener(this);
+	
+	sair = new JButton("SAIR");
+	sair.setSize(100, 40);
+	sair.setLocation(390, 230);
+	sair.addActionListener(this);
+	
+	getContentPane().add(entrar);
+	getContentPane().add(limpar);
+	getContentPane().add(sair);
+}
+
+public static void main(String args[])
+{
+	new LoginSenha().setVisible(true);
+}
+
+@SuppressWarnings("deprecation")
+public void actionPerformed(ActionEvent e)
+{
+	String senhacima, senhabaixo;
+	senhacima = txlogin.getText();
+	senhabaixo = pwsenha.getText();
+	
+	if(e.getSource() == sair)
+	{
+		System.exit(0);
+	}
+	
+	else if(e.getSource() == entrar)
+	{
+		if(senhacima.equals(login) && senhabaixo.equals(password))
+		{
+			Proj02 obj = new Proj02();
+	          obj.setVisible(true);
+			new LoginSenha().setVisible(false);
+			dispose();
+		}
+		
+		else
+		{
+			if(vzs>=3)
+			{
+				System.exit(0);
+			}
+			else
+			{
+				txlogin.setText("");
+				pwsenha.setText("");
+				JOptionPane.showMessageDialog(null, "Você errou mais " + (3-(vzs+1)) + "Tentativa(s)");
+				vzs++;
+			}
+		}
+	}
+	
+	else if(e.getSource() == limpar);
+	{
+		
+	}
+}
+
+import javax.swing.JOptionPane;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Proj02 extends Frame implements ActionListener
+{
+                MenuBar bMenu;
+                Menu menu1, menu2, menu3, menu4;
+                MenuItem m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20, m21, m22;
+
+	public Proj02()
+	{
+	      setTitle("Exercício com utilização de Menu");
+	      setResizable(false);
+	      setSize(800,600);
+	      setLocation(100,100);
+	      setBackground(Color.yellow);
+	      setLayout(null);
+
+                menu1 = new Menu("Cadastrar");
+                m1 = new MenuItem("Curso");
+                m1.addActionListener(this);
+                m2 = new MenuItem("Disciplina");
+                m2.addActionListener(this);
+                m3 = new MenuItem("Aluno");
+                m3.addActionListener(this);
+                m4 = new MenuItem("Professor");
+                m4.addActionListener(this);
+                menu1.add(m1);
+                menu1.add(m2);
+                menu1.add(m3);
+                menu1.add(m4);
+                
+                menu2 = new Menu("Mostrar");
+                m5 = new MenuItem("Cursos");
+                m5.addActionListener(this);
+                m6 = new MenuItem("Disciplinas");
+                m6.addActionListener(this);
+                m7 = new MenuItem("Aluno");
+                m7.addActionListener(this);
+                m8 = new MenuItem("Professores");
+                m8.addActionListener(this);
+                m9 = new MenuItem("Cursos/Professores");
+                m9.addActionListener(this);
+                m10 = new MenuItem("Cursos/Disciplinas");
+                m10.addActionListener(this);
+                m11 = new MenuItem("Professores/Disciplinas");
+                m11.addActionListener(this);
+                m12 = new MenuItem("Aluno/Disciplina");
+                m12.addActionListener(this);
+                menu2.add(m5);
+                menu2.add(m6);
+                menu2.add(m7);
+                menu2.add(m8);
+                menu2.addSeparator();
+                menu2.add(m9);
+                menu2.add(m10);
+                menu2.add(m11);
+                menu2.add(m12);
+                
+                menu3 = new Menu("Manutenção");
+                m13 = new MenuItem("Curso");
+                m13.addActionListener(this);
+                m14 = new MenuItem("Disciplina");
+                m14.addActionListener(this);
+                m15 = new MenuItem("Aluno");
+                m15.addActionListener(this);
+                m16 = new MenuItem("Professor");
+                m16.addActionListener(this);
+                menu3.add(m13);
+                menu3.add(m14);
+                menu3.add(m15);
+                menu3.add(m16);
+                
+                menu4 = new Menu("SAIR");
+                m21 = new MenuItem("SAIR");
+                m21.addActionListener(this);
+                menu4.add(m21);
+              
+              
+               
+                
+
+	        bMenu = new MenuBar();
+	        bMenu.add(menu1);
+	        bMenu.add(menu2);
+	        bMenu.add(menu3);
+	        bMenu.add(menu4);
+	       
+
+	        setMenuBar(bMenu);
+    }
+
+public void actionPerformed(ActionEvent e)
+{
+    if(e.getSource() == m21)
+    	System.exit(0);
+    
+	String evento = null;
+	
+          if( e.getSource() == m1 )
+          {
+              Proj021 obj = new Proj021();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m2 )
+          {
+               Proj022 obj = new Proj022();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m3 )
+          {
+              Proj023 obj = new Proj023();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m4 )
+          {
+              Proj024 obj = new Proj024();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m5 )
+          {
+              Proj025 obj = new Proj025();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m6 )
+          {
+              Proj026 obj = new Proj026();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m7 )
+          {
+              Proj027 obj = new Proj027();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m8 )
+          {
+              Proj028 obj = new Proj028();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m9 )
+          {
+              Proj029 obj = new Proj029();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m10 )
+          {
+              Proj03 obj = new Proj03();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m11 )
+          {
+              Proj031 obj = new Proj031();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m12 )
+          {
+              Proj032 obj = new Proj032();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m22 )
+          {
+              Proj034Disc obj = new Proj034Disc();
+          obj.setVisible(true);
+          }
+          else if( e.getSource() == m13 )
+              evento = "Alterar Curso";
+          else if( e.getSource() == m14 )
+              evento = "Excluir Curso";
+          else if( e.getSource() == m15 )
+              evento = "Alterar Disciplina";
+          else if( e.getSource() == m16 )
+              evento = "Excluir Disciplina";
+          else if( e.getSource() == m17 )
+              evento = "Alterar Aluno";
+          else if( e.getSource() == m18 )
+              evento = "Excluir Aluno";
+          else if( e.getSource() == m19 )
+              evento = "Alterar Professor";
+          else if( e.getSource() == m20 )
+              evento = "Excluir Professor";
+            
+}
+          public boolean handleEvent1(Event e)
+          {
+             if (e.id == Event.WINDOW_DESTROY) 
+                System.exit(0);           
+                return (super.handleEvent(e));
+          }
+
+	
+          public static void main(String arg[])
+	{
+		new Proj02().setVisible(true);
+	}
+
+}
+
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt
+.event.*;
+
+public class Proj03 extends JFrame implements ActionListener
+{
+   JButton B1, B2, B3;
+   JTextField Cod;
+   JLabel L1, L2;
+   String Matricula = "123.456-7"; 
+
+		
+   public Proj03()
+   {
+      setTitle("Mostrar Curso/Disciplinar");
+      setSize(500,500);
+      setLocation(80,50);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+      L1 = new JLabel("Insira o Código do Curso:");
+      L1.setLocation(30,70);
+      L1.setSize(200,20);
+
+      Cod = new JTextField("");
+      Cod.setSize(180,25);
+      Cod.setLocation(180,70);
+      
+      L2 = new JLabel("Disciplinas:");
+      L2.setLocation(30,72);
+      L2.setSize(150,120);
+      
+      B1 = new JButton("Mostrar");
+      B1.setSize(100,40);
+      B1.setLocation(80,400);
+      B1.setBackground(new Color(150,220,255));
+      B1.addActionListener(this);
+      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+      B1.setBackground(new Color(130,155,255));
+
+      B2 = new JButton("Sair");
+      B2.setSize(100,40);
+      B2.setLocation(280,400);
+      B2.setBackground(new Color(150,220,255));
+      B2.addActionListener(this);
+      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+      B2.setBackground(new Color(130,155,255));
+      
+      B3 = new JButton("Limpar");
+      B3.setSize(100,40);
+      B3.setLocation(180,400);
+      B3.setBackground(new Color(150,220,255));
+      B3.addActionListener(this);
+      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+      B3.setBackground(new Color(130,155,255));
+
+      getContentPane().setLayout(null);
+      getContentPane().add(L1);
+      getContentPane().add(L2);
+      getContentPane().add(Cod);
+      getContentPane().add(B1);
+      getContentPane().add(B2);
+      getContentPane().add(B3);
+   }
+   
+   public static void main(String arg[])
+{
+	new Proj03().setVisible(true);
+}
+	
+}
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Proj021 extends JFrame implements ActionListener, ListSelectionListener, ItemListener
+{
+   JButton B1, B2, B3;
+   JTextField CodigodoCurso, CargaHoraria, CodigodoInstituto;
+   JLabel L1, L2, L3, L4, L5, L6;
+   DefaultListModel lista;
+   JList Curso;
+   ButtonGroup Bg;
+   JRadioButton Tipo1, Tipo2, Tipo3;
+   String Matricula = "123.456-7"; 
+
+		
+   public Proj021()
+   {
+      setTitle("Tela de Cadastramento dos Cursos");
+      setSize(500,500);
+      setLocation(80,50);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+      L1 = new JLabel("CADASTRAMENTO DOS CURSOS");
+      L1.setLocation(30,20);
+      L1.setSize(490,20);
+      L1.setFont(new Font("Serif", Font.BOLD, 22));
+
+      L2 = new JLabel("Código do Curso:");
+      L2.setLocation(30,70);
+      L2.setSize(100,20);
+
+      CodigodoCurso = new JTextField("");
+      CodigodoCurso.setSize(100,25);
+      CodigodoCurso.setLocation(150,70);
+      
+      L3 = new JLabel("Carga Horária:");
+      L3.setLocation(30,72);
+      L3.setSize(150,120);
+
+      CargaHoraria = new JTextField("");
+      CargaHoraria.setSize(100,25);
+      CargaHoraria.setLocation(150,120);
+      
+      L4 = new JLabel("Código do Instituto:");
+      L4.setLocation(30,122);
+      L4.setSize(150,120);
+
+      CodigodoInstituto = new JTextField("");
+      CodigodoInstituto.setSize(100,25);
+      CodigodoInstituto.setLocation(150,170);
+      
+      L6 = new JLabel("Nome do Curso:");
+      L6.setLocation(280,20);
+      L6.setSize(200,120);
+      
+      lista = new DefaultListModel();
+      lista.addElement("Administração de Empresas");
+      lista.addElement("Bio Medicina");
+      lista.addElement("Ciências Biológicas");
+      lista.addElement("Ciências da Computação");
+      lista.addElement("Direito");
+      lista.addElement("Educação Física");
+      lista.addElement("Farmacologia");
+      lista.addElement("Rede de Computadores");
+      lista.addElement("Sistemas de Computação");
+
+      Curso = new JList(lista);
+      Curso.setSize(180,170);
+      Curso.setLocation(280,100);
+      Curso.setBackground(new Color(208,255,255));
+      Curso.addListSelectionListener(this);
+		
+      L5 = new JLabel("Tipo do Curso:");
+      L5.setLocation(30,250);
+      L5.setSize(150,20);
+
+      Tipo1 = new JRadioButton("Bacharel", true);
+      Tipo1.setLocation(25,280);
+      Tipo1.setSize(120,20);
+      Tipo1.addItemListener(this);
+      Tipo1.setBackground(new Color(208,255,255));
+		
+      Tipo2 = new JRadioButton("Gestão", false);
+      Tipo2.setLocation(25,310);
+      Tipo2.setSize(120,20);
+      Tipo2.addItemListener(this);
+      Tipo2.setBackground(new Color(208,255,255));
+      
+      Tipo3 = new JRadioButton("Outros", false);
+      Tipo3.setLocation(25,340);
+      Tipo3.setSize(120,20);
+      Tipo3.addItemListener(this);
+      Tipo3.setBackground(new Color(208,255,255));
+			
+      Bg = new ButtonGroup();
+      Bg.add(Tipo1);
+      Bg.add(Tipo2);
+      Bg.add(Tipo3);
+
+      B1 = new JButton("Incluir");
+      B1.setSize(100,40);
+      B1.setLocation(80,400);
+      B1.setBackground(new Color(150,220,255));
+      B1.addActionListener(this);
+      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+      B1.setBackground(new Color(130,155,255));
+
+      B2 = new JButton("Sair");
+      B2.setSize(100,40);
+      B2.setLocation(280,400);
+      B2.setBackground(new Color(150,220,255));
+      B2.addActionListener(this);
+      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+      B2.setBackground(new Color(130,155,255));
+      
+      B3 = new JButton("Limpar");
+      B3.setSize(100,40);
+      B3.setLocation(180,400);
+      B3.setBackground(new Color(150,220,255));
+      B3.addActionListener(this);
+      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+      B3.setBackground(new Color(130,155,255));
+
+      getContentPane().setLayout(null);
+      getContentPane().add(L1);
+      getContentPane().add(L2);
+      getContentPane().add(L3);
+      getContentPane().add(L4);
+      getContentPane().add(L5);
+      getContentPane().add(L6);
+      getContentPane().add(CodigodoCurso);
+      getContentPane().add(CargaHoraria);
+      getContentPane().add(CodigodoInstituto);
+      getContentPane().add(Curso);
+      getContentPane().add(Tipo1);
+      getContentPane().add(Tipo2);
+      getContentPane().add(Tipo3);
+      getContentPane().add(B1);
+      getContentPane().add(B2);
+      getContentPane().add(B3);
+   }
+   
+   public static void main(String arg[])
+{
+	new Proj021().setVisible(true);
+}
+
+	import javax.swing.*;
+	import javax.swing.event.*;
+	import java.awt.*;
+	import java.awt
+	.event.*;
+
+	public class Proj022 extends JFrame implements ActionListener, ListSelectionListener, ItemListener
+	{
+	   JButton B1, B2, B3;
+	   JTextField CodDisc, CargaHoraria, NomeDisc;
+	   JLabel L1, L2, L3, L4, L5, L6;
+	   ButtonGroup Bg;
+	   JRadioButton Tipo1, Tipo2, Tipo3, Tipo4, Tipo5, Tipo6;
+	   String Matricula = "123.456-7"; 
+
+			
+	   public Proj022()
+	   {
+	      setTitle("Tela de Cadastramento da Disciplina");
+	      setSize(500,500);
+	      setLocation(80,50);
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+	      L1 = new JLabel("CADASTRAMENTO DA DISCIPLINA");
+	      L1.setLocation(30,20);
+	      L1.setSize(490,20);
+	      L1.setFont(new Font("Serif", Font.BOLD, 22));
+
+	      L2 = new JLabel("Código da Disciplina:");
+	      L2.setLocation(30,70);
+	      L2.setSize(150,20);
+
+	      CodDisc = new JTextField("");
+	      CodDisc.setSize(100,25);
+	      CodDisc.setLocation(170,70);
+	      
+	      L3 = new JLabel("Carga Horária:");
+	      L3.setLocation(30,72);
+	      L3.setSize(150,120);
+
+	      CargaHoraria = new JTextField("");
+	      CargaHoraria.setSize(100,25);
+	      CargaHoraria.setLocation(170,120);
+	      
+	      L4 = new JLabel("Nome da Disciplina:");
+	      L4.setLocation(30,122);
+	      L4.setSize(150,120);
+
+	      NomeDisc = new JTextField("");
+	      NomeDisc.setSize(100,25);
+	      NomeDisc.setLocation(170,170);
+	      
+	      L5 = new JLabel("Aulas da Semana:");
+	      L5.setLocation(30,230);
+	      L5.setSize(150,20);
+
+	      Tipo1 = new JRadioButton("1", true);
+	      Tipo1.setLocation(25,250);
+	      Tipo1.setSize(120,20);
+	      Tipo1.addItemListener(this);
+	      Tipo1.setBackground(new Color(208,255,255));
+			
+	      Tipo2 = new JRadioButton("2", false);
+	      Tipo2.setLocation(25,275);
+	      Tipo2.setSize(120,20);
+	      Tipo2.addItemListener(this);
+	      Tipo2.setBackground(new Color(208,255,255));
+	      
+	      Tipo3 = new JRadioButton("3", false);
+	      Tipo3.setLocation(25,300);
+	      Tipo3.setSize(120,20);
+	      Tipo3.addItemListener(this);
+	      Tipo3.setBackground(new Color(208,255,255));
+	      
+	      Tipo4 = new JRadioButton("4", false);
+	      Tipo4.setLocation(25,325);
+	      Tipo4.setSize(120,20);
+	      Tipo4.addItemListener(this);
+	      Tipo4.setBackground(new Color(208,255,255));
+	      
+	      Tipo5 = new JRadioButton("5", false);
+	      Tipo5.setLocation(25,350);
+	      Tipo5.setSize(120,20);
+	      Tipo5.addItemListener(this);
+	      Tipo5.setBackground(new Color(208,255,255));
+	      
+	      Tipo6 = new JRadioButton("6", false);
+	      Tipo6.setLocation(25,375);
+	      Tipo6.setSize(120,20);
+	      Tipo6.addItemListener(this);
+	      Tipo6.setBackground(new Color(208,255,255));
+				
+	      Bg = new ButtonGroup();
+	      Bg.add(Tipo1);
+	      Bg.add(Tipo2);
+	      Bg.add(Tipo3);
+	      Bg.add(Tipo4);
+	      Bg.add(Tipo5);
+	      Bg.add(Tipo6);
+
+	      B1 = new JButton("Incluir");
+	      B1.setSize(100,40);
+	      B1.setLocation(80,400);
+	      B1.setBackground(new Color(150,220,255));
+	      B1.addActionListener(this);
+	      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+	      B1.setBackground(new Color(130,155,255));
+
+	      B2 = new JButton("Sair");
+	      B2.setSize(100,40);
+	      B2.setLocation(280,400);
+	      B2.setBackground(new Color(150,220,255));
+	      B2.addActionListener(this);
+	      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+	      B2.setBackground(new Color(130,155,255));
+	      
+	      B3 = new JButton("Limpar");
+	      B3.setSize(100,40);
+	      B3.setLocation(180,400);
+	      B3.setBackground(new Color(150,220,255));
+	      B3.addActionListener(this);
+	      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+	      B3.setBackground(new Color(130,155,255));
+
+	      getContentPane().setLayout(null);
+	      getContentPane().add(L1);
+	      getContentPane().add(L2);
+	      getContentPane().add(L3);
+	      getContentPane().add(L4);
+	      getContentPane().add(L5);
+	      getContentPane().add(CodDisc);
+	      getContentPane().add(CargaHoraria);
+	      getContentPane().add(NomeDisc);
+	      getContentPane().add(Tipo1);
+	      getContentPane().add(Tipo2);
+	      getContentPane().add(Tipo3);
+	      getContentPane().add(Tipo4);
+	      getContentPane().add(Tipo5);
+	      getContentPane().add(Tipo6);
+	      getContentPane().add(B1);
+	      getContentPane().add(B2);
+	      getContentPane().add(B3);
+	   }
+	   
+	   public static void main(String arg[])
+	{
+		new Proj022().setVisible(true);
+	}
+
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt
+.event.*;
+
+public class Proj023 extends JFrame implements ActionListener, ListSelectionListener, ItemListener
+{
+   JButton B1, B2, B3;
+   JTextField Matricula1, Nome, DataNasc, CodCurso, NomeCurso, NP1, NP2, Media, Falta;
+   JLabel L1, L2, L3, L4, L5, L6, L7, L8, L9, L10;
+   String Matricula = "123.456-7"; 
+
+		
+   public Proj023()
+   {
+      setTitle("Tela de Cadastramento dos Alunos");
+      setSize(500,500);
+      setLocation(80,50);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+      L1 = new JLabel("CADASTRAMENTO DOS ALUNOS");
+      L1.setLocation(30,20);
+      L1.setSize(490,20);
+      L1.setFont(new Font("Serif", Font.BOLD, 22));
+
+      L2 = new JLabel("Matrícula:");
+      L2.setLocation(30,70);
+      L2.setSize(100,20);
+
+      Matricula1 = new JTextField("");
+      Matricula1.setSize(330,25);
+      Matricula1.setLocation(100,70);
+      
+      L3 = new JLabel("Nome:");
+      L3.setLocation(30,72);
+      L3.setSize(150,120);
+
+      Nome = new JTextField("");
+      Nome.setSize(350,25);
+      Nome.setLocation(80,120);
+      
+      L4 = new JLabel("Data de Nascimento:");
+      L4.setLocation(30,122);
+      L4.setSize(150,120);
+
+      DataNasc = new JTextField("");
+      DataNasc.setSize(275,25);
+      DataNasc.setLocation(155,170);
+      
+      L5 = new JLabel("Código da Disciplina:");
+      L5.setLocation(30,172);
+      L5.setSize(150,120);
+
+      CodCurso = new JTextField("");
+      CodCurso.setSize(270,25);
+      CodCurso.setLocation(158,220);
+      
+      L6 = new JLabel("Nome do Curso:");
+      L6.setLocation(30,222);
+      L6.setSize(150,120);
+
+      NomeCurso = new JTextField("");
+      NomeCurso.setSize(300,25);
+      NomeCurso.setLocation(130,270);
+      
+      L7 = new JLabel("NP1:");
+      L7.setLocation(30,272);
+      L7.setSize(150,120);
+
+      NP1 = new JTextField("");
+      NP1.setSize(50,25);
+      NP1.setLocation(60,320);
+      
+      L8 = new JLabel("NP2:");
+      L8.setLocation(130,272);
+      L8.setSize(150,120);
+
+      NP2 = new JTextField("");
+      NP2.setSize(50,25);
+      NP2.setLocation(160,320);
+      
+      L9 = new JLabel("Média:");
+      L9.setLocation(230,272);
+      L9.setSize(150,120);
+
+      Media = new JTextField("");
+      Media.setSize(50,25);
+      Media.setLocation(270,320);
+      
+      L10 = new JLabel("Faltas:");
+      L10.setLocation(330,272);
+      L10.setSize(150,120);
+
+      Falta = new JTextField("");
+      Falta.setSize(50,25);
+      Falta.setLocation(370,320);
+      
+      B1 = new JButton("Incluir");
+      B1.setSize(100,40);
+      B1.setLocation(80,400);
+      B1.setBackground(new Color(150,220,255));
+      B1.addActionListener(this);
+      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+      B1.setBackground(new Color(130,155,255));
+
+      B2 = new JButton("Sair");
+      B2.setSize(100,40);
+      B2.setLocation(280,400);
+      B2.setBackground(new Color(150,220,255));
+      B2.addActionListener(this);
+      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+      B2.setBackground(new Color(130,155,255));
+      
+      B3 = new JButton("Limpar");
+      B3.setSize(100,40);
+      B3.setLocation(180,400);
+      B3.setBackground(new Color(150,220,255));
+      B3.addActionListener(this);
+      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+      B3.setBackground(new Color(130,155,255));
+
+      getContentPane().setLayout(null);
+      getContentPane().add(L1);
+      getContentPane().add(L2);
+      getContentPane().add(L3);
+      getContentPane().add(L4);
+      getContentPane().add(L5);
+      getContentPane().add(L6);
+      getContentPane().add(L7);
+      getContentPane().add(L8);
+      getContentPane().add(L9);
+      getContentPane().add(L10);
+      getContentPane().add(Matricula1);
+      getContentPane().add(Nome);
+      getContentPane().add(DataNasc);
+      getContentPane().add(CodCurso);
+      getContentPane().add(NomeCurso);
+      getContentPane().add(NP1);
+      getContentPane().add(NP2);
+      getContentPane().add(Media);
+      getContentPane().add(Falta);
+      getContentPane().add(B1);
+      getContentPane().add(B2);
+      getContentPane().add(B3);
+   }
+   
+   public static void main(String arg[])
+{
+	new Proj023().setVisible(true);
+}
+
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Proj024 extends JFrame implements ActionListener, ListSelectionListener, ItemListener
+{
+   JButton B1, B2, B3;
+   JTextField IdentProf, NomeProf, EndProf, DataNasc, NProf, BProf, CProf, EProf,Tel;
+   JLabel L1, L2, L3, L4, L5, L6, L7, L8, L9, L10, L11, L12;
+   DefaultListModel lista;
+   JList EspecProf;
+   ButtonGroup Bg, Bg1;
+   JRadioButton Tipo1, Tipo2, Tipo3, Tipo4, Tipo5, Tipo6;
+   String Matricula = "123.456-7"; 
+
+		
+   public Proj024()
+   {
+      setTitle("Tela de Cadastramento dos Professores");
+      setSize(500,500);
+      setLocation(80,50);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+      L1 = new JLabel("CADASTRAMENTO DOS PROFESSORES");
+      L1.setLocation(30,20);
+      L1.setSize(490,20);
+      L1.setFont(new Font("Serif", Font.BOLD, 22));
+
+      L2 = new JLabel("Nome:");
+      L2.setLocation(30,70);
+      L2.setSize(100,20);
+
+      NomeProf = new JTextField("");
+      NomeProf.setSize(370,25);
+      NomeProf.setLocation(70,70);
+      
+      L3 = new JLabel("Identidade:");
+      L3.setLocation(30,52);
+      L3.setSize(150,120);
+
+      IdentProf = new JTextField("");
+      IdentProf.setSize(150,25);
+      IdentProf.setLocation(95,100);
+      
+      L4 = new JLabel("Data de Nascimento:");
+      L4.setLocation(250,52);
+      L4.setSize(150,120);
+
+      DataNasc = new JTextField("");
+      DataNasc.setSize(70,25);
+      DataNasc.setLocation(370,100);
+      
+      L5 = new JLabel("Endereço-Bairro:");
+      L5.setLocation(30,80);
+      L5.setSize(150,120);
+      
+      EndProf = new JTextField("");
+      EndProf.setSize(150,25);
+      EndProf.setLocation(130,130);
+      
+      L6 = new JLabel("Número:");
+      L6.setLocation(290,80);
+      L6.setSize(150,120);
+
+      NProf = new JTextField("");
+      NProf.setSize(30,25);
+      NProf.setLocation(345,130);
+      
+      L7 = new JLabel("Cidade-Estado:");
+      L7.setLocation(30,110);
+      L7.setSize(150,120);
+
+      CProf = new JTextField("");
+      CProf.setSize(160,25);
+      CProf.setLocation(120,160);
+      
+      L8 = new JLabel("Telefone:");
+      L8.setLocation(290,110);
+      L8.setSize(150,120);
+
+      Tel = new JTextField("");
+      Tel.setSize(90,25);
+      Tel.setLocation(350,160);
+      
+      L9 = new JLabel("Especificação:");
+      L9.setLocation(280,160);
+      L9.setSize(200,120);
+      
+      lista = new DefaultListModel();
+      lista.addElement("Administração de Empresas");
+      lista.addElement("Bio Medicina");
+      lista.addElement("Ciências Biológicas");
+      lista.addElement("Ciências da Computação");
+      lista.addElement("Direito");
+      lista.addElement("Educação Física");
+      lista.addElement("Farmacologia");
+      lista.addElement("Rede de Computadores");
+      lista.addElement("Sistemas de Computação");
+
+      EspecProf = new JList(lista);
+      EspecProf.setSize(180,170);
+      EspecProf.setLocation(280,230);
+      EspecProf.setBackground(new Color(208,255,255));
+      EspecProf.addListSelectionListener(this);
+		
+      L10 = new JLabel("Título do Professor:");
+      L10.setLocation(30,210);
+      L10.setSize(150,20);
+
+      Tipo1 = new JRadioButton("Bacharel", true);
+      Tipo1.setLocation(25,230);
+      Tipo1.setSize(80,20);
+      Tipo1.addItemListener(this);
+      Tipo1.setBackground(new Color(208,255,255));
+		
+      Tipo2 = new JRadioButton("Gestão", false);
+      Tipo2.setLocation(25,260);
+      Tipo2.setSize(80,20);
+      Tipo2.addItemListener(this);
+      Tipo2.setBackground(new Color(208,255,255));
+      
+      Tipo3 = new JRadioButton("Outros", false);
+      Tipo3.setLocation(25,290);
+      Tipo3.setSize(80,20);
+      Tipo3.addItemListener(this);
+      Tipo3.setBackground(new Color(208,255,255));
+      
+      Bg = new ButtonGroup();
+      Bg.add(Tipo1);
+      Bg.add(Tipo2);
+      Bg.add(Tipo3);
+      
+      L11 = new JLabel("Especialista:");
+      L11.setLocation(170,210);
+      L11.setSize(150,20);
+
+      Tipo4 = new JRadioButton("Lato Sensu", true);
+      Tipo4.setLocation(170,230);
+      Tipo4.setSize(100,20);
+      Tipo4.addItemListener(this);
+      Tipo4.setBackground(new Color(208,255,255));
+		
+      Tipo5 = new JRadioButton("Mestrado", false);
+      Tipo5.setLocation(170,260);
+      Tipo5.setSize(100,20);
+      Tipo5.addItemListener(this);
+      Tipo5.setBackground(new Color(208,255,255));
+      
+      Tipo6 = new JRadioButton("Doutorado", false);
+      Tipo6.setLocation(170,290);
+      Tipo6.setSize(100,20);
+      Tipo6.addItemListener(this);
+      Tipo6.setBackground(new Color(208,255,255));
+
+      Bg1 = new ButtonGroup();
+      Bg1.add(Tipo4);
+      Bg1.add(Tipo5);
+      Bg1.add(Tipo6);
+    
+      B1 = new JButton("Incluir");
+      B1.setSize(100,40);
+      B1.setLocation(80,400);
+      B1.setBackground(new Color(150,220,255));
+      B1.addActionListener(this);
+      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+      B1.setBackground(new Color(130,155,255));
+
+      B2 = new JButton("Sair");
+      B2.setSize(100,40);
+      B2.setLocation(280,400);
+      B2.setBackground(new Color(150,220,255));
+      B2.addActionListener(this);
+      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+      B2.setBackground(new Color(130,155,255));
+      
+      B3 = new JButton("Limpar");
+      B3.setSize(100,40);
+      B3.setLocation(180,400);
+      B3.setBackground(new Color(150,220,255));
+      B3.addActionListener(this);
+      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+      B3.setBackground(new Color(130,155,255));
+
+      getContentPane().setLayout(null);
+      getContentPane().add(L1);
+      getContentPane().add(L2);
+      getContentPane().add(L3);
+      getContentPane().add(L4);
+      getContentPane().add(L5);
+      getContentPane().add(L6);
+      getContentPane().add(L7);
+      getContentPane().add(L8);
+      getContentPane().add(L9);
+      getContentPane().add(L10);
+      getContentPane().add(L11);
+      getContentPane().add(IdentProf);
+      getContentPane().add(NomeProf);
+      getContentPane().add(DataNasc);
+      getContentPane().add(EndProf);
+      getContentPane().add(NProf);
+      getContentPane().add(CProf);;
+      getContentPane().add(Tel);
+      getContentPane().add(EspecProf);
+      getContentPane().add(Tipo1);
+      getContentPane().add(Tipo2);
+      getContentPane().add(Tipo3);
+      getContentPane().add(Tipo4);
+      getContentPane().add(Tipo5);
+      getContentPane().add(Tipo6);
+      getContentPane().add(B1);
+      getContentPane().add(B2);
+      getContentPane().add(B3);
+   }
+   
+   public static void main(String arg[])
+{
+	new Proj024().setVisible(true);
+}
+
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Proj025 extends JFrame implements ActionListener, ListSelectionListener, ItemListener
+{
+   JButton B1, B2, B3;
+   JTextField CodigodoCurso, CargaHoraria, CodigodoInstituto;
+   JLabel L1, L2, L3, L4, L5, L6;
+   DefaultListModel lista;
+   JList Curso;
+   ButtonGroup Bg;
+   JRadioButton Tipo1, Tipo2, Tipo3;
+   String Matricula = "123.456-7"; 
+
+		
+   public Proj025()
+   {
+      setTitle("Tela de Mostrar Cursos");
+      setSize(500,500);
+      setLocation(80,50);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+      L1 = new JLabel("CURSOS");
+      L1.setLocation(30,20);
+      L1.setSize(490,20);
+      L1.setFont(new Font("Serif", Font.BOLD, 22));
+
+      L2 = new JLabel("Código do Curso:");
+      L2.setLocation(30,70);
+      L2.setSize(100,20);
+      
+      L3 = new JLabel("Carga Horária:");
+      L3.setLocation(30,72);
+      L3.setSize(150,120);
+
+      L4 = new JLabel("Código do Instituto:");
+      L4.setLocation(30,122);
+      L4.setSize(150,120);
+      
+      L6 = new JLabel("Nome do Curso:");
+      L6.setLocation(280,20);
+      L6.setSize(200,120);
+      
+      lista = new DefaultListModel();
+      lista.addElement("Administração de Empresas");
+      lista.addElement("Bio Medicina");
+      lista.addElement("Ciências Biológicas");
+      lista.addElement("Ciências da Computação");
+      lista.addElement("Direito");
+      lista.addElement("Educação Física");
+      lista.addElement("Farmacologia");
+      lista.addElement("Rede de Computadores");
+      lista.addElement("Sistemas de Computação");
+
+      Curso = new JList(lista);
+      Curso.setSize(180,170);
+      Curso.setLocation(280,100);
+      Curso.setBackground(new Color(208,255,255));
+      Curso.addListSelectionListener(this);
+		
+      L5 = new JLabel("Tipo do Curso:");
+      L5.setLocation(30,250);
+      L5.setSize(150,20);
+
+      Tipo1 = new JRadioButton("Bacharel", true);
+      Tipo1.setLocation(25,280);
+      Tipo1.setSize(120,20);
+      Tipo1.addItemListener(this);
+      Tipo1.setBackground(new Color(208,255,255));
+		
+      Tipo2 = new JRadioButton("Gestão", false);
+      Tipo2.setLocation(25,310);
+      Tipo2.setSize(120,20);
+      Tipo2.addItemListener(this);
+      Tipo2.setBackground(new Color(208,255,255));
+      
+      Tipo3 = new JRadioButton("Outros", false);
+      Tipo3.setLocation(25,340);
+      Tipo3.setSize(120,20);
+      Tipo3.addItemListener(this);
+      Tipo3.setBackground(new Color(208,255,255));
+			
+      Bg = new ButtonGroup();
+      Bg.add(Tipo1);
+      Bg.add(Tipo2);
+      Bg.add(Tipo3);
+
+      B1 = new JButton("Incluir");
+      B1.setSize(100,40);
+      B1.setLocation(80,400);
+      B1.setBackground(new Color(150,220,255));
+      B1.addActionListener(this);
+      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+      B1.setBackground(new Color(130,155,255));
+
+      B2 = new JButton("Sair");
+      B2.setSize(100,40);
+      B2.setLocation(280,400);
+      B2.setBackground(new Color(150,220,255));
+      B2.addActionListener(this);
+      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+      B2.setBackground(new Color(130,155,255));
+      
+      B3 = new JButton("Limpar");
+      B3.setSize(100,40);
+      B3.setLocation(180,400);
+      B3.setBackground(new Color(150,220,255));
+      B3.addActionListener(this);
+      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+      B3.setBackground(new Color(130,155,255));
+
+      getContentPane().setLayout(null);
+      getContentPane().add(L1);
+      getContentPane().add(L2);
+      getContentPane().add(L3);
+      getContentPane().add(L4);
+      getContentPane().add(L5);
+      getContentPane().add(L6);
+      getContentPane().add(Curso);
+      getContentPane().add(Tipo1);
+      getContentPane().add(Tipo2);
+      getContentPane().add(Tipo3);
+      getContentPane().add(B1);
+      getContentPane().add(B2);
+      getContentPane().add(B3);
+   }
+   
+   public static void main(String arg[])
+{
+	new Proj025().setVisible(true);
+}
+
+	import javax.swing.*;
+	import javax.swing.event.*;
+	import java.awt.*;
+	import java.awt
+	.event.*;
+
+	public class Proj026 extends JFrame implements ActionListener, ListSelectionListener, ItemListener
+	{
+	   JButton B1, B2, B3;
+	   JTextField CodDisc, CargaHoraria, NomeDisc;
+	   JLabel L1, L2, L3, L4, L5, L6;
+	   ButtonGroup Bg;
+	   JRadioButton Tipo1, Tipo2, Tipo3, Tipo4, Tipo5, Tipo6;
+	   String Matricula = "123.456-7"; 
+
+			
+	   public Proj026()
+	   {
+	      setTitle("Tela de Mostrar Disciplina");
+	      setSize(500,500);
+	      setLocation(80,50);
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+	      L1 = new JLabel("DISCIPLINA");
+	      L1.setLocation(30,20);
+	      L1.setSize(490,20);
+	      L1.setFont(new Font("Serif", Font.BOLD, 22));
+
+	      L2 = new JLabel("Código da Disciplina:");
+	      L2.setLocation(30,70);
+	      L2.setSize(150,20);
+	      
+	      L3 = new JLabel("Carga Horária:");
+	      L3.setLocation(30,72);
+	      L3.setSize(150,120);
+	      
+	      L4 = new JLabel("Nome da Disciplina:");
+	      L4.setLocation(30,122);
+	      L4.setSize(150,120);
+	      
+	      L5 = new JLabel("Aulas da Semana:");
+	      L5.setLocation(30,230);
+	      L5.setSize(150,20);
+
+	      Tipo1 = new JRadioButton("1", true);
+	      Tipo1.setLocation(25,250);
+	      Tipo1.setSize(120,20);
+	      Tipo1.addItemListener(this);
+	      Tipo1.setBackground(new Color(208,255,255));
+			
+	      Tipo2 = new JRadioButton("2", false);
+	      Tipo2.setLocation(25,275);
+	      Tipo2.setSize(120,20);
+	      Tipo2.addItemListener(this);
+	      Tipo2.setBackground(new Color(208,255,255));
+	      
+	      Tipo3 = new JRadioButton("3", false);
+	      Tipo3.setLocation(25,300);
+	      Tipo3.setSize(120,20);
+	      Tipo3.addItemListener(this);
+	      Tipo3.setBackground(new Color(208,255,255));
+	      
+	      Tipo4 = new JRadioButton("4", false);
+	      Tipo4.setLocation(25,325);
+	      Tipo4.setSize(120,20);
+	      Tipo4.addItemListener(this);
+	      Tipo4.setBackground(new Color(208,255,255));
+	      
+	      Tipo5 = new JRadioButton("5", false);
+	      Tipo5.setLocation(25,350);
+	      Tipo5.setSize(120,20);
+	      Tipo5.addItemListener(this);
+	      Tipo5.setBackground(new Color(208,255,255));
+	      
+	      Tipo6 = new JRadioButton("6", false);
+	      Tipo6.setLocation(25,375);
+	      Tipo6.setSize(120,20);
+	      Tipo6.addItemListener(this);
+	      Tipo6.setBackground(new Color(208,255,255));
+				
+	      Bg = new ButtonGroup();
+	      Bg.add(Tipo1);
+	      Bg.add(Tipo2);
+	      Bg.add(Tipo3);
+	      Bg.add(Tipo4);
+	      Bg.add(Tipo5);
+	      Bg.add(Tipo6);
+
+	      B1 = new JButton("Incluir");
+	      B1.setSize(100,40);
+	      B1.setLocation(80,400);
+	      B1.setBackground(new Color(150,220,255));
+	      B1.addActionListener(this);
+	      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+	      B1.setBackground(new Color(130,155,255));
+
+	      B2 = new JButton("Sair");
+	      B2.setSize(100,40);
+	      B2.setLocation(280,400);
+	      B2.setBackground(new Color(150,220,255));
+	      B2.addActionListener(this);
+	      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+	      B2.setBackground(new Color(130,155,255));
+	      
+	      B3 = new JButton("Limpar");
+	      B3.setSize(100,40);
+	      B3.setLocation(180,400);
+	      B3.setBackground(new Color(150,220,255));
+	      B3.addActionListener(this);
+	      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+	      B3.setBackground(new Color(130,155,255));
+
+	      getContentPane().setLayout(null);
+	      getContentPane().add(L1);
+	      getContentPane().add(L2);
+	      getContentPane().add(L3);
+	      getContentPane().add(L4);
+	      getContentPane().add(L5);
+	      getContentPane().add(Tipo1);
+	      getContentPane().add(Tipo2);
+	      getContentPane().add(Tipo3);
+	      getContentPane().add(Tipo4);
+	      getContentPane().add(Tipo5);
+	      getContentPane().add(Tipo6);
+	      getContentPane().add(B1);
+	      getContentPane().add(B2);
+	      getContentPane().add(B3);
+	   }
+	   
+	   public static void main(String arg[])
+	{
+		new Proj026().setVisible(true);
+	}
+
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt
+.event.*;
+
+public class Proj027 extends JFrame implements ActionListener, ListSelectionListener, ItemListener
+{
+   JButton B1, B2, B3;
+   JTextField Matricula1, Nome, DataNasc, CodCurso, NomeCurso, NP1, NP2, Media, Falta;
+   JLabel L1, L2, L3, L4, L5, L6, L7, L8, L9, L10;
+   String Matricula = "123.456-7"; 
+
+		
+   public Proj027()
+   {
+      setTitle("Tela de Mostrar Alunos");
+      setSize(500,500);
+      setLocation(80,50);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+      L1 = new JLabel("ALUNOS");
+      L1.setLocation(30,20);
+      L1.setSize(490,20);
+      L1.setFont(new Font("Serif", Font.BOLD, 22));
+
+      L2 = new JLabel("Matrícula:");
+      L2.setLocation(30,70);
+      L2.setSize(100,20);
+      
+      L3 = new JLabel("Nome:");
+      L3.setLocation(30,72);
+      L3.setSize(150,120);
+      
+      L4 = new JLabel("Data de Nascimento:");
+      L4.setLocation(30,122);
+      L4.setSize(150,120);
+      
+      L5 = new JLabel("Código da Disciplina:");
+      L5.setLocation(30,172);
+      L5.setSize(150,120);
+      
+      L6 = new JLabel("Nome do Curso:");
+      L6.setLocation(30,222);
+      L6.setSize(150,120);
+      
+      L7 = new JLabel("NP1:");
+      L7.setLocation(30,272);
+      L7.setSize(150,120);
+      
+      L8 = new JLabel("NP2:");
+      L8.setLocation(130,272);
+      L8.setSize(150,120);
+      
+      L9 = new JLabel("Média:");
+      L9.setLocation(230,272);
+      L9.setSize(150,120);
+      
+      L10 = new JLabel("Faltas:");
+      L10.setLocation(330,272);
+      L10.setSize(150,120);
+      
+      B1 = new JButton("Incluir");
+      B1.setSize(100,40);
+      B1.setLocation(80,400);
+      B1.setBackground(new Color(150,220,255));
+      B1.addActionListener(this);
+      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+      B1.setBackground(new Color(130,155,255));
+
+      B2 = new JButton("Sair");
+      B2.setSize(100,40);
+      B2.setLocation(280,400);
+      B2.setBackground(new Color(150,220,255));
+      B2.addActionListener(this);
+      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+      B2.setBackground(new Color(130,155,255));
+      
+      B3 = new JButton("Limpar");
+      B3.setSize(100,40);
+      B3.setLocation(180,400);
+      B3.setBackground(new Color(150,220,255));
+      B3.addActionListener(this);
+      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+      B3.setBackground(new Color(130,155,255));
+
+      getContentPane().setLayout(null);
+      getContentPane().add(L1);
+      getContentPane().add(L2);
+      getContentPane().add(L3);
+      getContentPane().add(L4);
+      getContentPane().add(L5);
+      getContentPane().add(L6);
+      getContentPane().add(L7);
+      getContentPane().add(L8);
+      getContentPane().add(L9);
+      getContentPane().add(L10);
+      getContentPane().add(B1);
+      getContentPane().add(B2);
+      getContentPane().add(B3);
+   }
+   
+   public static void main(String arg[])
+{
+	new Proj027().setVisible(true);
+}
+
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Proj028 extends JFrame implements ActionListener, ListSelectionListener, ItemListener
+{
+   JButton B1, B2, B3;
+   JTextField IdentProf, NomeProf, EndProf, DataNasc, NProf, BProf, CProf, EProf,Tel;
+   JLabel L1, L2, L3, L4, L5, L6, L7, L8, L9, L10, L11, L12;
+   DefaultListModel lista;
+   JList EspecProf;
+   ButtonGroup Bg, Bg1;
+   JRadioButton Tipo1, Tipo2, Tipo3, Tipo4, Tipo5, Tipo6;
+   String Matricula = "123.456-7"; 
+
+		
+   public Proj028()
+   {
+      setTitle("Tela de Mostrar Professores");
+      setSize(500,500);
+      setLocation(80,50);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+      L1 = new JLabel("PROFESSORES");
+      L1.setLocation(30,20);
+      L1.setSize(490,20);
+      L1.setFont(new Font("Serif", Font.BOLD, 22));
+
+      L2 = new JLabel("Nome:");
+      L2.setLocation(30,70);
+      L2.setSize(100,20);
+      
+      L3 = new JLabel("Identidade:");
+      L3.setLocation(30,52);
+      L3.setSize(150,120);
+      
+      L4 = new JLabel("Data de Nascimento:");
+      L4.setLocation(250,52);
+      L4.setSize(150,120);
+      
+      L5 = new JLabel("Endereço-Bairro:");
+      L5.setLocation(30,80);
+      L5.setSize(150,120);
+      
+      L6 = new JLabel("Número:");
+      L6.setLocation(290,80);
+      L6.setSize(150,120);
+      
+      L7 = new JLabel("Cidade-Estado:");
+      L7.setLocation(30,110);
+      L7.setSize(150,120);
+      
+      L8 = new JLabel("Telefone:");
+      L8.setLocation(290,110);
+      L8.setSize(150,120);
+      
+      L9 = new JLabel("Especificação:");
+      L9.setLocation(280,160);
+      L9.setSize(200,120);
+      
+      lista = new DefaultListModel();
+      lista.addElement("Administração de Empresas");
+      lista.addElement("Bio Medicina");
+      lista.addElement("Ciências Biológicas");
+      lista.addElement("Ciências da Computação");
+      lista.addElement("Direito");
+      lista.addElement("Educação Física");
+      lista.addElement("Farmacologia");
+      lista.addElement("Rede de Computadores");
+      lista.addElement("Sistemas de Computação");
+
+      EspecProf = new JList(lista);
+      EspecProf.setSize(180,170);
+      EspecProf.setLocation(280,230);
+      EspecProf.setBackground(new Color(208,255,255));
+      EspecProf.addListSelectionListener(this);
+		
+      L10 = new JLabel("Título do Professor:");
+      L10.setLocation(30,210);
+      L10.setSize(150,20);
+
+      Tipo1 = new JRadioButton("Bacharel", true);
+      Tipo1.setLocation(25,230);
+      Tipo1.setSize(80,20);
+      Tipo1.addItemListener(this);
+      Tipo1.setBackground(new Color(208,255,255));
+		
+      Tipo2 = new JRadioButton("Gestão", false);
+      Tipo2.setLocation(25,260);
+      Tipo2.setSize(80,20);
+      Tipo2.addItemListener(this);
+      Tipo2.setBackground(new Color(208,255,255));
+      
+      Tipo3 = new JRadioButton("Outros", false);
+      Tipo3.setLocation(25,290);
+      Tipo3.setSize(80,20);
+      Tipo3.addItemListener(this);
+      Tipo3.setBackground(new Color(208,255,255));
+      
+      Bg = new ButtonGroup();
+      Bg.add(Tipo1);
+      Bg.add(Tipo2);
+      Bg.add(Tipo3);
+      
+      L11 = new JLabel("Especialista:");
+      L11.setLocation(170,210);
+      L11.setSize(150,20);
+
+      Tipo4 = new JRadioButton("Lato Sensu", true);
+      Tipo4.setLocation(170,230);
+      Tipo4.setSize(100,20);
+      Tipo4.addItemListener(this);
+      Tipo4.setBackground(new Color(208,255,255));
+		
+      Tipo5 = new JRadioButton("Mestrado", false);
+      Tipo5.setLocation(170,260);
+      Tipo5.setSize(100,20);
+      Tipo5.addItemListener(this);
+      Tipo5.setBackground(new Color(208,255,255));
+      
+      Tipo6 = new JRadioButton("Doutorado", false);
+      Tipo6.setLocation(170,290);
+      Tipo6.setSize(100,20);
+      Tipo6.addItemListener(this);
+      Tipo6.setBackground(new Color(208,255,255));
+
+      Bg1 = new ButtonGroup();
+      Bg1.add(Tipo4);
+      Bg1.add(Tipo5);
+      Bg1.add(Tipo6);
+    
+      B1 = new JButton("Incluir");
+      B1.setSize(100,40);
+      B1.setLocation(80,400);
+      B1.setBackground(new Color(150,220,255));
+      B1.addActionListener(this);
+      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+      B1.setBackground(new Color(130,155,255));
+
+      B2 = new JButton("Sair");
+      B2.setSize(100,40);
+      B2.setLocation(280,400);
+      B2.setBackground(new Color(150,220,255));
+      B2.addActionListener(this);
+      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+      B2.setBackground(new Color(130,155,255));
+      
+      B3 = new JButton("Limpar");
+      B3.setSize(100,40);
+      B3.setLocation(180,400);
+      B3.setBackground(new Color(150,220,255));
+      B3.addActionListener(this);
+      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+      B3.setBackground(new Color(130,155,255));
+
+      getContentPane().setLayout(null);
+      getContentPane().add(L1);
+      getContentPane().add(L2);
+      getContentPane().add(L3);
+      getContentPane().add(L4);
+      getContentPane().add(L5);
+      getContentPane().add(L6);
+      getContentPane().add(L7);
+      getContentPane().add(L8);
+      getContentPane().add(L9);
+      getContentPane().add(L10);
+      getContentPane().add(L11);
+      getContentPane().add(EspecProf);
+      getContentPane().add(Tipo1);
+      getContentPane().add(Tipo2);
+      getContentPane().add(Tipo3);
+      getContentPane().add(Tipo4);
+      getContentPane().add(Tipo5);
+      getContentPane().add(Tipo6);
+      getContentPane().add(B1);
+      getContentPane().add(B2);
+      getContentPane().add(B3);
+   }
+   
+   public static void main(String arg[])
+{
+	new Proj028().setVisible(true);
+}
+
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt
+.event.*;
+
+public class Proj029 extends JFrame implements ActionListener
+{
+   JButton B1, B2, B3;
+   JTextField CodProf;
+   JLabel L1, L2;
+   String Matricula = "123.456-7"; 
+
+		
+   public Proj029()
+   {
+      setTitle("Mostrar Curso/Professor");
+      setSize(500,500);
+      setLocation(80,50);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+      L1 = new JLabel("Insira o Código do Curso:");
+      L1.setLocation(30,70);
+      L1.setSize(230,20);
+
+      CodProf = new JTextField("");
+      CodProf.setSize(180,25);
+      CodProf.setLocation(200,70);
+      
+      L2 = new JLabel("Professor:");
+      L2.setLocation(30,72);
+      L2.setSize(150,120);
+      
+      B1 = new JButton("Mostrar");
+      B1.setSize(100,40);
+      B1.setLocation(80,400);
+      B1.setBackground(new Color(150,220,255));
+      B1.addActionListener(this);
+      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+      B1.setBackground(new Color(130,155,255));
+
+      B2 = new JButton("Sair");
+      B2.setSize(100,40);
+      B2.setLocation(280,400);
+      B2.setBackground(new Color(150,220,255));
+      B2.addActionListener(this);
+      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+      B2.setBackground(new Color(130,155,255));
+      
+      B3 = new JButton("Limpar");
+      B3.setSize(100,40);
+      B3.setLocation(180,400);
+      B3.setBackground(new Color(150,220,255));
+      B3.addActionListener(this);
+      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+      B3.setBackground(new Color(130,155,255));
+
+      getContentPane().setLayout(null);
+      getContentPane().add(L1);
+      getContentPane().add(L2);
+      getContentPane().add(CodProf);
+      getContentPane().add(B1);
+      getContentPane().add(B2);
+      getContentPane().add(B3);
+   }
+   
+   public static void main(String arg[])
+{
+	new Proj029().setVisible(true);
+}
+
+	import javax.swing.*;
+	import javax.swing.event.*;
+	import java.awt.*;
+	import java.awt
+	.event.*;
+
+	public class Proj034Disc extends JFrame implements ActionListener, ListSelectionListener, ItemListener
+	{
+	   JButton B1, B2, B3;
+	   JTextField CodDisc, CargaHoraria, NomeDisc;
+	   JLabel L1, L2, L3, L4, L5, L6;
+	   ButtonGroup Bg;
+	   JRadioButton Tipo1, Tipo2, Tipo3, Tipo4, Tipo5, Tipo6;
+	   String Matricula = "123.456-7"; 
+
+			
+	   public Proj034Disc()
+	   {
+	      setTitle("Tela de Manutenção Disciplina");
+	      setSize(500,500);
+	      setLocation(80,50);
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+	      L1 = new JLabel("MANUTENÇÃO DE DISCIPLINA");
+	      L1.setLocation(30,20);
+	      L1.setSize(490,20);
+	      L1.setFont(new Font("Serif", Font.BOLD, 22));
+
+	      L2 = new JLabel("Código da Disciplina:");
+	      L2.setLocation(30,70);
+	      L2.setSize(150,20);
+
+	      CodDisc = new JTextField("");
+	      CodDisc.setSize(100,25);
+	      CodDisc.setLocation(170,70);
+	      
+	      L3 = new JLabel("Carga Horária:");
+	      L3.setLocation(30,72);
+	      L3.setSize(150,120);
+
+	      CargaHoraria = new JTextField("");
+	      CargaHoraria.setSize(100,25);
+	      CargaHoraria.setLocation(170,120);
+	      
+	      L4 = new JLabel("Nome da Disciplina:");
+	      L4.setLocation(30,122);
+	      L4.setSize(150,120);
+
+	      NomeDisc = new JTextField("");
+	      NomeDisc.setSize(100,25);
+	      NomeDisc.setLocation(170,170);
+	      
+	      L5 = new JLabel("Aulas da Semana:");
+	      L5.setLocation(30,230);
+	      L5.setSize(150,20);
+
+	      Tipo1 = new JRadioButton("1", true);
+	      Tipo1.setLocation(25,250);
+	      Tipo1.setSize(120,20);
+	      Tipo1.addItemListener(this);
+	      Tipo1.setBackground(new Color(208,255,255));
+			
+	      Tipo2 = new JRadioButton("2", false);
+	      Tipo2.setLocation(25,275);
+	      Tipo2.setSize(120,20);
+	      Tipo2.addItemListener(this);
+	      Tipo2.setBackground(new Color(208,255,255));
+	      
+	      Tipo3 = new JRadioButton("3", false);
+	      Tipo3.setLocation(25,300);
+	      Tipo3.setSize(120,20);
+	      Tipo3.addItemListener(this);
+	      Tipo3.setBackground(new Color(208,255,255));
+	      
+	      Tipo4 = new JRadioButton("4", false);
+	      Tipo4.setLocation(25,325);
+	      Tipo4.setSize(120,20);
+	      Tipo4.addItemListener(this);
+	      Tipo4.setBackground(new Color(208,255,255));
+	      
+	      Tipo5 = new JRadioButton("5", false);
+	      Tipo5.setLocation(25,350);
+	      Tipo5.setSize(120,20);
+	      Tipo5.addItemListener(this);
+	      Tipo5.setBackground(new Color(208,255,255));
+	      
+	      Tipo6 = new JRadioButton("6", false);
+	      Tipo6.setLocation(25,375);
+	      Tipo6.setSize(120,20);
+	      Tipo6.addItemListener(this);
+	      Tipo6.setBackground(new Color(208,255,255));
+				
+	      Bg = new ButtonGroup();
+	      Bg.add(Tipo1);
+	      Bg.add(Tipo2);
+	      Bg.add(Tipo3);
+	      Bg.add(Tipo4);
+	      Bg.add(Tipo5);
+	      Bg.add(Tipo6);
+
+	      B1 = new JButton("Incluir");
+	      B1.setSize(100,40);
+	      B1.setLocation(80,400);
+	      B1.setBackground(new Color(150,220,255));
+	      B1.addActionListener(this);
+	      B1.setFont(new Font("Serif", Font.BOLD, 18));      
+	      B1.setBackground(new Color(130,155,255));
+
+	      B2 = new JButton("Sair");
+	      B2.setSize(100,40);
+	      B2.setLocation(280,400);
+	      B2.setBackground(new Color(150,220,255));
+	      B2.addActionListener(this);
+	      B2.setFont(new Font("Serif", Font.BOLD, 18));      
+	      B2.setBackground(new Color(130,155,255));
+	      
+	      B3 = new JButton("Limpar");
+	      B3.setSize(100,40);
+	      B3.setLocation(180,400);
+	      B3.setBackground(new Color(150,220,255));
+	      B3.addActionListener(this);
+	      B3.setFont(new Font("Serif", Font.BOLD, 18));      
+	      B3.setBackground(new Color(130,155,255));
+
+	      getContentPane().setLayout(null);
+	      getContentPane().add(L1);
+	      getContentPane().add(L2);
+	      getContentPane().add(L3);
+	      getContentPane().add(L4);
+	      getContentPane().add(L5);
+	      getContentPane().add(CodDisc);
+	      getContentPane().add(CargaHoraria);
+	      getContentPane().add(NomeDisc);
+	      getContentPane().add(Tipo1);
+	      getContentPane().add(Tipo2);
+	      getContentPane().add(Tipo3);
+	      getContentPane().add(Tipo4);
+	      getContentPane().add(Tipo5);
+	      getContentPane().add(Tipo6);
+	      getContentPane().add(B1);
+	      getContentPane().add(B2);
+	      getContentPane().add(B3);
+	   }
+	   
+	   public static void main(String arg[])
+	{
+		new Proj034Disc().setVisible(true);
+	}
